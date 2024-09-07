@@ -49,11 +49,9 @@ public class BookController {
         return "redirect:/booklist";
     }
     
-    @GetMapping("/detelebook/{id}")
+    @GetMapping("/deletebook/{id}")
     public String deleteBook(@PathVariable Long id) {
         bookRepository.deleteById(id);
         return "redirect:/booklist";
-    }
-    
-    
+    } 
 }
