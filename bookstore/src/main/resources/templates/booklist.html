@@ -3,39 +3,12 @@
 <head>
    <meta charset="UTF-8">
    <h1>Books</h1>
-   <style>
-      table{
-         width: 100%;
-         border-collapse: collapse;
-      }
-      table, th, td{
-         border: 1px solid black;
-      }
-      th, td{
-         padding: 8px;
-         text-align: left;
-      }
-      th{
-         background-color: #f2f2f2;
-      }
-      .button {
-            padding: 10px 20px;
-            color: white;
-            background-color: #007bff;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-        .button:hover {
-            background-color: #0056b3;
-        }
-   </style>
-
+   <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 </head>
 <body>
    <title>Booklist</title>
-   
-   <table>
+   <a href="/addbook" class="btn btn-success mb-3">Add New Book</a>
+   <table class = "table table-striped">
       <thead>
           <tr>
               <th>Title</th>
@@ -53,12 +26,12 @@
               <td th:text="${book.isbn}">ISBN</td>
               <td th:text="${book.price}">Price</td>
               <td>
-               <a th:href="@{/deletebook/{id}(id=${book.id})}" >Delete</a>
+               <a th:href="@{/edit/{id}(id=${book.id})}" class="btn btn-primary">Edit</a>
+               <a th:href="@{/deletebook/{id}(id=${book.id})}" class="btn btn-danger">Delete</a>
               </td>
           </tr>
          </tbody>
       </table>
       <br><br>
-      <a class="button" href="/addbook">Add New Book</a>
 </body>
 </html>

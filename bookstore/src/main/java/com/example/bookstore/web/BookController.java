@@ -11,7 +11,7 @@ import com.example.bookstore.repository.BookRepository;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @Controller
@@ -54,4 +54,19 @@ public class BookController {
         bookRepository.deleteById(id);
         return "redirect:/booklist";
     } 
+
+    @GetMapping("/edit/{id}")
+    public String editBook(@PathVariable Long id, Model model) {
+        Book book = bookRepository.findById(id)
+                    .orElseThrow(() -> new IllegalArgumentException("Invalid book Id:" + id));
+                    model.addAttribute("book", book);
+                    return "editbook";
+    }
+    
+    @PostMapping("/updatebook")
+    public String updateBook(Book book) {
+        bookRepository.save(book);
+        return "redirect:/booklist";
+    }
+    
 }
