@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html xmlns="http://www.thymeleaf.org"></html>
+<html xmlns="http://www.thymeleaf.org">
 <head>
    <meta charset="UTF-8">
-   <h1>Books</h1>
+   <title>Booklist</title>
    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 </head>
 <body>
-   <title>Booklist</title>
+   <h1>Books</h1>
    <a href="/addbook" class="btn btn-success mb-3">Add New Book</a>
-   <table class = "table table-striped">
+   <table class="table table-striped">
       <thead>
           <tr>
               <th>Title</th>
@@ -16,6 +16,7 @@
               <th>Publication Year</th>
               <th>ISBN</th>
               <th>Price</th>
+              <th>Category</th>
           </tr>
       </thead>
       <tbody>
@@ -25,13 +26,14 @@
               <td th:text="${book.publicationYear}">Publication Year</td>
               <td th:text="${book.isbn}">ISBN</td>
               <td th:text="${book.price}">Price</td>
+              <td th:text="${book.category.name}">Category</td>
               <td>
                <a th:href="@{/edit/{id}(id=${book.id})}" class="btn btn-primary">Edit</a>
                <a th:href="@{/deletebook/{id}(id=${book.id})}" class="btn btn-danger">Delete</a>
               </td>
           </tr>
-         </tbody>
-      </table>
-      <br><br>
+      </tbody>
+   </table>
+   <br><br>
 </body>
 </html>
