@@ -20,17 +20,18 @@
           </tr>
       </thead>
       <tbody>
-          <tr th:each="book : ${books}">
-              <td th:text="${book.title}">Title</td>
-              <td th:text="${book.author}">Author</td>
-              <td th:text="${book.publicationYear}">Publication Year</td>
-              <td th:text="${book.isbn}">ISBN</td>
-              <td th:text="${book.price}">Price</td>
-              <td th:text="${book.category.name}">Category</td>
-              <td>
-               <a th:href="@{/edit/{id}(id=${book.id})}" class="btn btn-primary">Edit</a>
-               <a th:href="@{/deletebook/{id}(id=${book.id})}" class="btn btn-danger">Delete</a>
-              </td>
+        <tr th:each="book : ${books}">
+            <td th:text="${book != null ? book.title : 'No Title'}">Title</td>
+            <td th:text="${book != null ? book.author : 'No Author'}">Author</td>
+            <td th:text="${book != null ? book.publicationYear : 'No Publication Year'}">Publication Year</td>
+            <td th:text="${book != null ? book.isbn : 'No ISBN'}">ISBN</td>
+            <td th:text="${book != null ? book.price : 'No Price'}">Price</td>
+            <td th:text="${book != null && book.category != null ? book.category.name : 'No Category'}">Category</td>
+            <td>
+                <a th:href="@{/edit/{id}(id=${book.id})}" class="btn btn-primary">Edit</a>
+                <a th:href="@{/deletebook/{id}(id=${book.id})}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>        
           </tr>
       </tbody>
    </table>

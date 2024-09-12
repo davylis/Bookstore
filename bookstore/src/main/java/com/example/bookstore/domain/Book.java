@@ -25,12 +25,13 @@ public class Book {
     public Book() {}
 
     //constructor
-    public Book(String title, String author, int publicationYear, String isbn, double price){
+    public Book(String title, String author, int publicationYear, String isbn, double price, Category category){
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;
         this.isbn = isbn;
         this.price = price;
+        this.category = category;
     }
 
     //getters and setters
@@ -81,7 +82,7 @@ public class Book {
     public void setPrice(double price) {
         this.price = price;
     }
-    
+
     public Category getCategory() {
         return category;
     }

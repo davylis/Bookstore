@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.bookstore.domain.Book;
+import com.example.bookstore.domain.Category;
 import com.example.bookstore.repository.BookRepository;
 import com.example.bookstore.repository.CategoryRepository;
 
@@ -36,6 +37,7 @@ public class BookController {
     @GetMapping("/booklist")
     public String booklist(Model model) {
         List<Book> books = bookRepository.findAll();
+        books.forEach(book -> System.out.println("Book: " + book));
         model.addAttribute("books", books);
         return "booklist";
     }
@@ -45,7 +47,7 @@ public class BookController {
         model.addAttribute("book", new Book());
         model.addAttribute("categories", categoryRepository.findAll());
 
-        
+
         return "addbook";
     }
 
@@ -65,7 +67,9 @@ public class BookController {
     public String editBook(@PathVariable Long id, Model model) {
         Book book = bookRepository.findById(id)
                     .orElseThrow(() -> new IllegalArgumentException("Invalid book Id:" + id));
+                    List<Category> categories = categoryRepository.findAll(); // Fetch all categories
                     model.addAttribute("book", book);
+                    model.addAttribute("categories", categories);
                     return "editbook";
     }
     

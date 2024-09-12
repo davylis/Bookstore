@@ -29,9 +29,9 @@ public class BookstoreApplication {
             categoryRepository.save(nonFiction);
 
 			//books
-			bookRepository.save(new Book("aaa", "bbb", 123, "000", 10.00));
-			bookRepository.save(new Book("aaa", "bbb", 123, "000", 10.00));
-			bookRepository.save(new Book("aaa", "bbb", 123, "000", 10.00));
+			bookRepository.save(new Book("aaa", "bbb", 123, "000", 10.00, fiction));
+			bookRepository.save(new Book("aaa", "bbb", 123, "000", 10.00, nonFiction));
+			bookRepository.save(new Book("aaa", "bbb", 123, "000", 10.00, fiction));
 		};
 	}
 }
