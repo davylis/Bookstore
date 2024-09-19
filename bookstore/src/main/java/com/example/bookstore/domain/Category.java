@@ -1,5 +1,6 @@
 package com.example.bookstore.domain;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,17 +14,18 @@ import java.util.List;
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
     private List<Book> books = new ArrayList<>();
 
     // Constructors
     public Category() {}
 
     public Category(String name) {
+        super();
         this.name = name;
     }
 

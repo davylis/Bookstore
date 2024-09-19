@@ -5,20 +5,21 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
 
 @Entity
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String title;
-    private String author;
+    private String title, author;
     private int publicationYear;
     private String isbn;
     private double price;
 
     @ManyToOne
+    @JoinColumn(name = "category")
     private Category category;
 
     //empty constructor is mandatory.
@@ -26,6 +27,7 @@ public class Book {
 
     //constructor
     public Book(String title, String author, int publicationYear, String isbn, double price, Category category){
+        super();
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;

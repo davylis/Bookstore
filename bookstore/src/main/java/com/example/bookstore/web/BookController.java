@@ -1,82 +1,57 @@
 package com.example.bookstore.web;
 
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.bookstore.domain.Book;
-import com.example.bookstore.domain.Category;
 import com.example.bookstore.repository.BookRepository;
 import com.example.bookstore.repository.CategoryRepository;
 
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-
-
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class BookController {
 
-    private final BookRepository bookRepository;
-    private final CategoryRepository categoryRepository;
+    @Autowired
+    private BookRepository bookRepository;
 
-    public BookController(BookRepository bookRepository, CategoryRepository categoryRepository){
-        this.bookRepository = bookRepository;
-        this.categoryRepository = categoryRepository;
-    }
+    @Autowired
+    private CategoryRepository categoryRepository;
 
-
-    @GetMapping("/index")
-    @ResponseBody
-    public String index() {
-        return "Welcome to the Bookstore!";
-    }
-
-    @GetMapping("/booklist")
+    @RequestMapping(value = {"/", "/booklist"})
     public String booklist(Model model) {
-        List<Book> books = bookRepository.findAll();
-        books.forEach(book -> System.out.println("Book: " + book));
-        model.addAttribute("books", books);
+       model.addAttribute("books", bookRepository.findAll());
         return "booklist";
     }
 
-    @GetMapping("/addbook")
+    @RequestMapping("/addbook")
     public String addBookForm(Model model) {
         model.addAttribute("book", new Book());
         model.addAttribute("categories", categoryRepository.findAll());
-
-
         return "addbook";
     }
 
-    @PostMapping("/addbook")
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String addBook(Book book) {
         bookRepository.save(book);
         return "redirect:/booklist";
     }
     
-    @GetMapping("/deletebook/{id}")
-    public String deleteBook(@PathVariable Long id) {
+    @RequestMapping(value = "/deletebook/{id}", method = RequestMethod.GET)
+    public String deleteBook(@PathVariable("id") Long id, Model model) {
         bookRepository.deleteById(id);
         return "redirect:/booklist";
     } 
 
-    @GetMapping("/edit/{id}")
-    public String editBook(@PathVariable Long id, Model model) {
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String editBook(@PathVariable("id") Long id, Model model) {
         Book book = bookRepository.findById(id)
                     .orElseThrow(() -> new IllegalArgumentException("Invalid book Id:" + id));
-                    List<Category> categories = categoryRepository.findAll(); // Fetch all categories
-                    model.addAttribute("book", book);
-                    model.addAttribute("categories", categories);
-                    return "editbook";
-    }
-    
-    @PostMapping("/updatebook")
-    public String updateBook(Book book) {
-        bookRepository.save(book);
-        return "redirect:/booklist";
+        model.addAttribute("book", book);
+        model.addAttribute("categories", categoryRepository.findAll());
+        return "editbook";
     }
     
 }
