@@ -42,7 +42,7 @@ public class BookController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String addBook(Book book) {
+    public String save(Book book) {
         bookRepository.save(book);
         return "redirect:/booklist";
     }

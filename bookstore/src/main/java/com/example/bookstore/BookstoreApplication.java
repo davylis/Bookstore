@@ -27,13 +27,15 @@ public class BookstoreApplication {
 			//create categories
 			Category fiction = new Category("Fiction");
             Category nonFiction = new Category("Non-fiction");
+			Category romance = new Category("Romance");
 
 			//save categories
 			categoryRepository.save(fiction);
             categoryRepository.save(nonFiction);
+			categoryRepository.save(romance);
 
 			//creating books and associating them with categories
-			bookRepository.save(new Book("aaa", "bbb", 123, "000", 10.00, fiction));
+			bookRepository.save(new Book("The Best of Me", "Nicholas Sparks", 2011, "9781455502547", 20.00, romance));
 			bookRepository.save(new Book("aaa", "bbb", 123, "000", 10.00, nonFiction));
 			bookRepository.save(new Book("aaa", "bbb", 123, "000", 10.00, fiction));
 		};
