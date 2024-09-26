@@ -1,5 +1,7 @@
 package com.example.bookstore.repository;
 
-public class AppUserRepository {
+import org.springframework.data.repository.CrudRepository;
 
+public class AppUserRepository extends CrudRepository<AppUser, Long> {
+    AppUser findByUsername(String username);
 }
