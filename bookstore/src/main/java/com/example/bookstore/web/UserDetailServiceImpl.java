@@ -7,6 +7,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.example.bookstore.domain.AppUser;
+import com.example.bookstore.repository.AppUserRepository;
+
 /**
  * This class is used by spring security to authenticate and authorize user
  **/

@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class BookstoreApplication {
 	//is used to output log messages, which can help debugging, monitoring and maintain application
+	@SuppressWarnings("unused")
 	private static final Logger log = LoggerFactory.getLogger(BookstoreApplication.class);
 
 	public static void main(String[] args) {
