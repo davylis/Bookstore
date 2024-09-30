@@ -29,8 +29,8 @@ public class AppUser {
 		this.username = username;
 		this.passwordHash = passwordHash;
 		this.role = role;
-	}
-
+    }
+	
     /**
      * @return Long return the id
      */
