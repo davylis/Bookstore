@@ -1,85 +1,82 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-
 <head>
     <title>Spring Security </title>
-    <link type="text/css" rel="stylesheet" href="/src/main/resources/static/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
-
+        <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}"/>
 </head>
+<body>
+    <style>
+       body,
+       html {
+           height: 100%;
+           margin: 0px;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           background-color: #001b92;
+       }
+
+       form {
+           width: 400px;
+           padding: 20px;
+           font-size: 18px;
+           background-color: #979797;
+           border-radius: 8px;
+           box-shadow: -30px 20px 20px rgba(9, 0, 94, 0.932);
+           box-sizing: border-box;
+       }
+
+       label {
+           font-size: 23px;
+           font-weight: 300;
+           display: block;
+           margin-bottom: 10px;
+           text-align: center;
+       }
+
+       input.form-control {
+           width: 100%;
+           padding: 10px;
+           font-size: 16px;
+           border: 1px solid #ccc;
+           border-radius: 4px;
+           margin-bottom: 20px;
+       }
+
+       .button-container {
+           display: flex;
+           justify-content: center;
+           margin: 10px 0;
+       }
+
+       input[type="submit"] {
+           width: 100%;
+           padding: 10px;
+           font-size: 18px;
+           background-color: #007bff;
+           color: white;
+           border-radius: 4px;
+           cursor: pointer;
+
+       }
+
+       input[type="submit"]:hover {
+           background-color: #0056b3;
+       }
+   </style> 
 
 <body>
-     <style>
-        body,
-        html {
-            height: 100%;
-            margin: 0px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #001b92;
-        }
-
-        form {
-            width: 400px;
-            padding: 20px;
-            font-size: 18px;
-            background-color: #979797;
-            border-radius: 8px;
-            box-shadow: -30px 20px 20px rgba(9, 0, 94, 0.932);
-            box-sizing: border-box;
-        }
-
-        label {
-            font-size: 23px;
-            font-weight: 300;
-            display: block;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
-        input.form-control {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-bottom: 20px;
-        }
-
-        .button-container {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
-
-        input[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            font-size: 18px;
-            background-color: #007bff;
-            color: white;
-            border-radius: 4px;
-            cursor: pointer;
-
-        }
-
-        input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-    </style> 
-    <form th:action="@{/login}" method="post">
+    <div class="form-container">
         <div class="alert alert-danger" th:if="${param.error}">
             Invalid username and password.
         </div>
         <div class="alert alert-warning" th:if="${param.logout}">
             You have been logged out.
         </div>
-        <div class="form-group"></div>
-        <div><label for="username"> User Name : <input type="text" name="username" class="form-control" /> </label>
-        </div>
-        <div><label for="password"> Password: <input type="password" name="password" class="form-control" /> </label>
-        </div>
+        <form th:action="@{/login}" method="post">
+        <div><label for="username"> User Name : <input type="text" name="username" class="form-control" /> </label></div>
+        <div><label for="password"> Password: <input type="password" name="password" class="form-control" /> </label></div>
         <div><input type="submit" value="Sign In" class="btn btn-primary" /></div>
     </form>
 
