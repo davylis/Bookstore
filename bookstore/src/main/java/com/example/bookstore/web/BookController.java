@@ -99,6 +99,13 @@ public class BookController {
         return bookRepository.findByTitle(title);
     }
 
+    //RESTful service for delete a book by an id
+    //8080/book/delete/(id)
+    @RequestMapping(value = "/book/delete/{id}", method=RequestMethod.GET)
+    public @ResponseBody String deleteBook(@PathVariable("id") Long id){
+        bookRepository.deleteById(id);
+        return "Book deleted";
+    }
 
     
 }
