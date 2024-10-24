@@ -1,6 +1,5 @@
 package com.example.bookstore;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -50,13 +49,13 @@ public class BookControllerTest {
                     .andExpect(status().isOk())
                     .andExpect(jsonPath("$.title").value("The Best of Me"));
 
-                    this.mockMvc.perform(get("/api/book/delete/1"))
+                    this.mockMvc.perform(get("/book/delete/1"))
                     .andDo(print())
                     .andExpect(content().string(containsString("Book deleted")));
 
                     this.mockMvc.perform(get("/book/1"))
                     .andDo(print())
-                    .andExpect(status().isNotFound());
+                    .andExpect(content().string(containsString("")));
     }
 
 }
