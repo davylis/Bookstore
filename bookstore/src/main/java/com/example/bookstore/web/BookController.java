@@ -104,6 +104,7 @@ public class BookController {
     @RequestMapping(value = "/book/delete/{id}", method=RequestMethod.GET)
     public @ResponseBody String deleteBook(@PathVariable("id") Long id){
         bookRepository.deleteById(id);
+        System.out.println("JUKKANNN" +id);
         return "Book deleted";
     }
 
