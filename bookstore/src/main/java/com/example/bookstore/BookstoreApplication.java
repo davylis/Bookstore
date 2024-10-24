@@ -42,8 +42,9 @@ public class BookstoreApplication {
 							"user@email.fi");
 			AppUser user2 = new AppUser("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ROLE_ADMIN", 
 							"admin@email.fi");
-			userRepository.save(user1);
-			userRepository.save(user2);
+			//Comment this, because database already saved them
+			//userRepository.save(user1);
+			//userRepository.save(user2);
 
 			log.info("fetch all students");
 			for (Book book : bookRepository.findAll()) {
